@@ -1,0 +1,22 @@
+{
+  "name": "node-server",
+  "version": "1.0.1",
+  "description": "Fast static file server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "fileserver"
+  ],
+  "author": "MaxXx1313 <fomy.spam@gmail.com>",
+  "license": "ISC",
+  "bin": {
+    "node-server": "./bin/node-server"
+  },
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}

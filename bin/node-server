@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+
+var express = require('express');
+var fs = require('fs');
+var path = require('path');
+var app = express();
+
+var port = process.argv[2] || 8080;
+var base_dir = process.cwd();
+
+app.use(function(req,res,next){
+  console.log('%s  %s', req.method.toUpperCase(), req.url);
+  next();
+});
+
+app.use(express.static(base_dir));
+app.use((req,res)=>{
+	// try to list files in folder
+	var files = fs.readdirSync( path.join(base_dir, req.url) );
+	res.send(files);
+});
+//app.use(express.errorHandler());
+
+var server = app.listen(port, function(){
+  console.log('Server started at %s:%s', server.address().address, server.address().port);
+});
