@@ -1,61 +1,11 @@
 #!/usr/bin/env node
 
-var express = require('express');
-var fs = require('fs');
-var path = require('path');
-var app = express();
+var serverStarter = require('../lib/server.js');
 var meta = require(__dirname + '/../package.json');
 
 var port = process.argv[2] || 8080;
-var base_dir = process.cwd();
+var webrootDir = process.cwd();
 
-app.use(function(req, res, next) {
-    console.log('[%s] %s  %s', new Date().toISOString(), req.method.toUpperCase(), req.url);
-    next();
-});
-
-app.use(express.static(base_dir));
-app.get('/favicon.ico', (req, res) => fs.createReadStream(__dirname + '/../nodejs.ico').pipe(res));
-app.use((req, res, next) => {
-    // try to list files in folder
-    fs.readdir(path.join(base_dir, req.url), (err, files) => {
-        if (!err)
-            res.send(files);
-        else
-            next();
-    });
-
-});
-//app.use(express.errorHandler());
 
 console.log('Server v%s', meta.version);
-
-start_server_recursive(port).then(server => {
-    console.log('Server started at %s:%s', server.address().address, server.address().port);
-});
-
-
-function start_server_recursive(port) {
-    return start_server(port)
-        .catch(e => {
-            //console.log(e);
-            return start_server_recursive(port + 1);
-        });
-}
-
-
-function start_server(port) {
-    return new Promise((pass, fail) => {
-        var server = app.listen(port, function() {
-            pass(server);
-        });
-        server.on('error', err => {
-            if (err.errno === 'EADDRINUSE') {
-                console.log('Port %s is busy', port);
-                fail(err);
-            } else {
-                throw err;
-            }
-        });
-    });
-}
+serverStarter.start(webrootDir, port);
