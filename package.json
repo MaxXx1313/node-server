@@ -1,6 +1,6 @@
 {
   "name": "node-server",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Simple static file server. Mostly for develop and test purposes",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,18 +11,17 @@
     "fileserver"
   ],
   "author": "MaxXx1313 <fomy.spam@gmail.com>",
-  "repository" : {
-     "type" : "git",
-     "url" : "https://github.com/MaxXx1313/node-server.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MaxXx1313/node-server.git"
   },
-
-
   "license": "ISC",
   "main": "index.js",
   "bin": {
     "node-server": "./bin/node-server"
   },
   "dependencies": {
+    "command-line-args": "^3.0.4",
     "express": "^4.13.4"
   }
 }

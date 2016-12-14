@@ -1,11 +1,18 @@
 #!/usr/bin/env node
 
-var serverStarter = require('../lib/server.js');
-var meta = require(__dirname + '/../package.json');
+const serverStarter = require('../lib/server.js');
+const meta = require(__dirname + '/../package.json');
 
-var port = process.argv[2] || 8080;
-var webrootDir = process.cwd();
+const commandLineArgs = require('command-line-args')
 
+const optionDefinitions = [
+  { name: 'silent', alias: 's', type: Boolean },
+  { name: 'dir', alias: 'd', type: String, defaultValue:process.cwd() },
+  { name: 'port', alias: 'p', type: Number, defaultValue:8080, defaultOption: true }
+];
 
-console.log('Server v%s', meta.version);
-serverStarter.start(webrootDir, port);
+const options = commandLineArgs(optionDefinitions);
+
+// console.log(options);
+options.silent || console.log('Server v%s', meta.version);
+serverStarter.start(options.dir, options.port, options);
