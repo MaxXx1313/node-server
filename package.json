@@ -1,6 +1,6 @@
 {
   "name": "node-server",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Simple static file server. Mostly for develop and test purposes",
   "keywords": [
     "node",

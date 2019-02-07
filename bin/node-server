@@ -7,8 +7,9 @@ const commandLineArgs = require('command-line-args')
 
 const optionDefinitions = [
   { name: 'silent', alias: 's', type: Boolean },
+  { name: 'ssl', type: Boolean },
   { name: 'dir', alias: 'd', type: String, defaultValue:process.cwd() },
-  { name: 'port', alias: 'p', type: Number, defaultValue:8080, defaultOption: true }
+  { name: 'port', alias: 'p', type: Number, defaultOption: true }
 ];
 
 const options = commandLineArgs(optionDefinitions);
