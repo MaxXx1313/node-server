@@ -1,6 +1,6 @@
 {
   "name": "node-server",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Simple static file server. Mostly for develop and test purposes",
   "keywords": [
     "node",
@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "command-line-args": "^3.0.4",
+    "cors": "^2.8.5",
     "express": "^4.13.4"
   }
 }
